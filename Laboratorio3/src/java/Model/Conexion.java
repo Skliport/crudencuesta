@@ -40,6 +40,7 @@ public class Conexion {
         Statement cons = this.conexion.createStatement();
         return cons.executeQuery(query);
     }
+    
     public int DoQuery2(String query) throws SQLException{
         try{
         Statement cons = this.conexion.createStatement();
