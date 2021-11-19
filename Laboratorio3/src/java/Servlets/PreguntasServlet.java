@@ -1,6 +1,10 @@
 package Servlets;
 
+import Model.Pregunta;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,12 +22,40 @@ public class PreguntasServlet extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.lang.InstantiationException
+     * @throws java.lang.IllegalAccessException
+     * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
-        // Proximamente c:   
+        String[] values = request.getParameter("btnActionPregunta").split("-");
+        int action = Integer.parseInt(values[0]);
+        int id = Integer.parseInt(values[1]);
+        
+        switch (action) {
+            
+            // Insert
+            case 1:
+                Pregunta pregunta = new Pregunta();
+                pregunta.preguntaTipo = request.getParameter("txtPreguntaTipo");
+                pregunta.pregunta = request.getParameter("txtPregunta");
+                Pregunta.Insert(pregunta);
+                
+                response.sendRedirect("/Laboratorio3/...");
+                break;
+            
+            // Delete
+            case 2:
+                Pregunta.Remove(id);
+                response.sendRedirect("/Laboratorio3/...");
+                break;
+                
+            default:
+                throw new AssertionError();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -38,7 +70,11 @@ public class PreguntasServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
+            Logger.getLogger(PreguntasServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -52,7 +88,11 @@ public class PreguntasServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
+            Logger.getLogger(PreguntasServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

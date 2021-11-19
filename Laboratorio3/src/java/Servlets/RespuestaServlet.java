@@ -53,6 +53,7 @@ public class RespuestaServlet extends HttpServlet {
                 Respuesta.Remove(id);
                 response.sendRedirect("/Laboratorio3/...");
                 break;
+                
             default:
                 throw new AssertionError();
         }
