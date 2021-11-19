@@ -4,9 +4,17 @@
         <servlet-name>RespuestaServlet</servlet-name>
         <servlet-class>Servlets.RespuestaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RespuestaUsuarioServlet</servlet-name>
+        <servlet-class>Servlets.RespuestaUsuarioServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RespuestaServlet</servlet-name>
         <url-pattern>/RespuestaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RespuestaUsuarioServlet</servlet-name>
+        <url-pattern>/RespuestaUsuarioServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
