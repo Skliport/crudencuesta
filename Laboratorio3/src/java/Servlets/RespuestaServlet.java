@@ -54,6 +54,14 @@ public class RespuestaServlet extends HttpServlet {
                 response.sendRedirect("/Laboratorio3/...");
                 break;
                 
+            // Update - Texto de respuesta
+            case 3:
+                String textoRespuesta = request.getParameter("txtUpdateTextoRespuesta");                
+                Respuesta.Update(id, textoRespuesta);
+                
+                response.sendRedirect("/Laboratorio3/...");
+                break;
+                
             default:
                 throw new AssertionError();
         }

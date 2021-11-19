@@ -53,6 +53,15 @@ public class Pregunta {
         return resp;
     }
     
+    public static int Update(int preguntaId, String pregunta) throws ClassNotFoundException, 
+        InstantiationException, IllegalAccessException, SQLException{
+        
+        oCon = new Conexion();
+        int resp = oCon.agregar("UPDATE tblPreguntas SET pregunta = '"+pregunta+"' WHERE "
+            + "preguntaId = '"+preguntaId+"'");
+        return resp;
+    }
+    
     public static int Remove(int preguntaId) throws ClassNotFoundException, 
         InstantiationException, IllegalAccessException, SQLException{
         

@@ -52,6 +52,14 @@ public class PreguntasServlet extends HttpServlet {
                 Pregunta.Remove(id);
                 response.sendRedirect("/Laboratorio3/...");
                 break;
+            
+            // Update - Texto de pregunta
+            case 3:
+                String textoPregunta = request.getParameter("txtUpdateTextoPregunta");                
+                Pregunta.Update(id, textoPregunta);
+                
+                response.sendRedirect("/Laboratorio3/...");
+                break;
                 
             default:
                 throw new AssertionError();

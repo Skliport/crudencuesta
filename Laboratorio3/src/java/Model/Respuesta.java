@@ -51,6 +51,15 @@ public class Respuesta {
         return resp;
     }
     
+    public static int Update(int respuestaId, String respuesta) throws ClassNotFoundException, 
+        InstantiationException, IllegalAccessException, SQLException{
+        
+        oCon = new Conexion();
+        int resp = oCon.agregar("UPDATE tblRespuestas SET respuesta = '"+respuesta+"' WHERE "
+            + "respuestaId = '"+respuestaId+"'");
+        return resp;
+    }
+    
     public static int Remove(int respuestaId) throws ClassNotFoundException, 
         InstantiationException, IllegalAccessException, SQLException{
         
