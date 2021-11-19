@@ -1,0 +1,66 @@
+
+Base de datos encuesta2021
++-----------------+
+| tblEncuesta     |
+|-----------------|
+| encuestaId      |
+| encuestaNombre  |
++-----------------+
+
++---------------+
+| tblPreguntas  |
+|---------------|
+| preguntaID    |
+| encuestaID    |
+| preguntaTipo  |
+| pregunta      |
++---------------+
+
++------------------+
+| tblRespuestas    |
+|------------------|
+| respuestaID      |
+| preguntaID       |
+| respuesta        |
++------------------+
+
++---------------------+
+| tblRespuestaUsuario |
+|---------------------|
+| usuarioRespuestaID  |
+| respuestaID         |
+| usuarioID           |
+| respuesta           |
++---------------------+
+
++-----------------+
+| tblUsuarios     |
+|-----------------|
+| usuarioID       |
+| usuarioNombre   |
+| usuarioApellido |
+| usuarioCorreo   |
+| usuarioClave    |
++-----------------+
+
+Para el laboratorio
+Crear un mini sistema para la elaboraci�n de encuestas, requisito indispensable:
+-crear plantilla.
+-utilizar el m�delo MVC.
+-para los estilos de la p�gina puede utilizar CSS o frameworks css.
+-cree los crud necesarios para el correcto funcionamiento del sistema.
+-crear consulta que muestre todas las encuestas.
+-cree la consulta que muestre la encuesta con todas sus preguntas.
+-cree la consulta que muestre la encuesta con preguntas y respuetas.
+-los usuarios solo pueden responder una vez por encuesta pero pueden participar en todas las encuestas.
+-el usuario puede visualizar todas las encuestas en que ha participado.
+-el usuario puede ver detalladamente cada encuesta realizada por �l.
+-para crear los reportes pueden utilizar la libreria que ustedes estimen conveniente.
+-las encuestas se pueden visualizar sin iniciar sesi�n pero para participar de debe estar logueado.
+-el sistema debe tener autoregistro.
+-separar correctamente cada m�dulo, solo se consideran 2 (administrador, usuario).
+-cada consulta debe tener su reporte.
+-la consulta y reporte se tomara como un todo, si solo se tiene la consulta no tendra valor para la presentaci�n.
+-se permite el trabajo en equipos y de forma individual.
+-los equipos m�ximo 4 integrantes.
+-este ejercicio se retomar� para el examen final y valdr� 6 puntos de este solo se agregar�n gr�ficos que se indicar�n el d�a 17-11-2021.
