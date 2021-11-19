@@ -1,6 +1,6 @@
 package Servlets;
 
-import Model.Pregunta;
+import Model.Respuesta;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "PreguntasServlet", urlPatterns = {"/PreguntasServlet"})
-public class PreguntasServlet extends HttpServlet {
+@WebServlet(name = "RespuestaServlet", urlPatterns = {"/RespuestaServlet"})
+public class RespuestaServlet extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> 
      * methods.
      *
      * @param request servlet request
@@ -28,10 +28,11 @@ public class PreguntasServlet extends HttpServlet {
      * @throws java.sql.SQLException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+            throws ServletException, IOException, ClassNotFoundException, InstantiationException, 
+            IllegalAccessException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String[] values = request.getParameter("btnActionPregunta").split("-");
+        String[] values = request.getParameter("btnActionRespuesta").split("-");
         int action = Integer.parseInt(values[0]);
         int id = Integer.parseInt(values[1]);
         
@@ -39,24 +40,24 @@ public class PreguntasServlet extends HttpServlet {
             
             // Insert
             case 1:
-                Pregunta pregunta = new Pregunta();
-                pregunta.preguntaTipo = request.getParameter("txtPreguntaTipo");
-                pregunta.pregunta = request.getParameter("txtPregunta");
-                Pregunta.Insert(pregunta);
+                Respuesta respuesta = new Respuesta();
+                respuesta.preguntaId = Integer.parseInt(request.getParameter("txtPreguntaId"));
+                respuesta.respuesta = request.getParameter("txtRespuesta");
+                Respuesta.Insert(respuesta);
                 
                 response.sendRedirect("/Laboratorio3/...");
                 break;
             
             // Delete
             case 2:
-                Pregunta.Remove(id);
+                Respuesta.Remove(id);
                 response.sendRedirect("/Laboratorio3/...");
                 break;
-            
-            // Update - Texto de pregunta
+                
+            // Update - Texto de respuesta
             case 3:
-                String textoPregunta = request.getParameter("txtUpdateTextoPregunta");                
-                Pregunta.Update(id, textoPregunta);
+                String textoRespuesta = request.getParameter("txtUpdateTextoRespuesta");                
+                Respuesta.Update(id, textoRespuesta);
                 
                 response.sendRedirect("/Laboratorio3/...");
                 break;
@@ -81,7 +82,7 @@ public class PreguntasServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
-            Logger.getLogger(PreguntasServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RespuestaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -99,7 +100,7 @@ public class PreguntasServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException ex) {
-            Logger.getLogger(PreguntasServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RespuestaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
