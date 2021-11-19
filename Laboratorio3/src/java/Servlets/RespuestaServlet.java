@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author bryan
+ * @author Sebastian
  */
-@WebServlet(name = "PreguntasServlet", urlPatterns = {"/PreguntasServlet"})
-public class PreguntasServlet extends HttpServlet {
+@WebServlet(name = "RespuestaServlet", urlPatterns = {"/RespuestaServlet"})
+public class RespuestaServlet extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> 
      * methods.
      *
      * @param request servlet request
@@ -27,7 +27,7 @@ public class PreguntasServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        // Proximamente c:   
+        // Próximamente c:
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
