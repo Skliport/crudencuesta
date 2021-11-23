@@ -49,6 +49,10 @@ public class EncuestaServlet extends HttpServlet {
                     break;
                 case "3":
                     id = Integer.parseInt(request.getParameter("txtId"));
+                    response.sendRedirect("/editEncuesta.jsp?id="+id);
+                    break;
+                case "4":
+                    String EditNombre = request.getParameter("txtNombreEdit");
                     break;
             }
             response.sendRedirect("index.jsp");

@@ -17,7 +17,7 @@ import java.sql.Statement;
  */
 public class Conexion {
 
-    Connection conexion = null;
+    public Connection conexion = null;
     static String url = "jdbc:mysql://localhost:3306/encuesta2021";
     static String Usuario = "root";
     static String contrasena = "root";

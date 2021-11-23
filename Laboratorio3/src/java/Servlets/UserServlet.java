@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,17 +37,39 @@ public class UserServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        clsUsuario item = new clsUsuario();
-        item.usuarioNombre = request.getParameter("txtUsuarioNombre");
-        item.usuarioClave= request.getParameter("txtUsuarioClave");
-        item.usuarioCorreo=request.getParameter("txtUsuarioCorreo");
-        item.usuarioApellido=request.getParameter("txtUsuarioApellido");
-        int resp = clsUsuario.Insert(item);
-        if(resp==1){
-            System.out.println("Item insertado");
-        }else{
-            System.out.println("error!!!");
+        String items = request.getParameter("btnAction");
+        String action = items.split("-")[0];
+        switch (action) {
+            case "1":
+                clsUsuario item = new clsUsuario();
+                item.usuarioNombre = request.getParameter("txtUsuarioNombre");
+                item.usuarioClave = request.getParameter("txtUsuarioClave");
+                item.usuarioCorreo = request.getParameter("txtUsuarioCorreo");
+                item.usuarioApellido = request.getParameter("txtUsuarioApellido");
+                int resp = clsUsuario.Insert(item);
+                if (resp == 1) {
+                    System.out.println("Item insertado");
+                } else {
+                    System.out.println("error!!!");
+                }
+                break;
+            case "2":
+                clsUsuario respo = clsUsuario.LogIn(request.getParameter("txtUsuarioCorreo"), request.getParameter("txtUsuarioClave"));
+                if(respo.usuarioId==-5){
+                    //no se encontro ningun usuario
+                    break;
+                }else{
+                    //realizar la logica de inicio de sesion
+                    HttpSession session = request.getSession();
+                    session.setAttribute("usuarioNombre", respo.usuarioNombre);
+                    session.setAttribute("usuarioApellido", respo.usuarioApellido);
+                    session.setAttribute("usuarioCorreo", respo.usuarioCorreo);
+                    session.setAttribute("usuarioId", respo.usuarioId);
+response.sendRedirect("index.jsp");
+                }
+                break;
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

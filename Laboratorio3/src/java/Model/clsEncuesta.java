@@ -42,4 +42,9 @@ public class clsEncuesta {
         }
         return encuestas;
     }
+    public static int update(int id, String nombre) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException{
+        oCon = new Conexion();
+        int resp = oCon.DoQuery2("update tblEncuesta set encuestaNombre='"+nombre+"' where encuestaId="+id);
+        return resp;
+    }
 }
