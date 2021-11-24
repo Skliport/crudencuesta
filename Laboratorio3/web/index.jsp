@@ -32,10 +32,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.jsp">Inicio <span class="sr-only">(current)</span></a>
                     </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="View/Encuesta/quizzViewUser.jsp">Encuestas Respondidas</a>
-                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <%  //Verificando inicio de sesión

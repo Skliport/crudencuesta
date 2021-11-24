@@ -36,9 +36,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../../index.jsp">Inicio <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="quizzViewUser.jsp">Encuestas Respondidas</a>
-                    </li>
                 </ul>
             </div>
         </nav>

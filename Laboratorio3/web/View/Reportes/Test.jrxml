@@ -40,7 +40,7 @@ GROUP BY tblEncuesta.encuestaId ]]>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="327" y="2" width="100" height="20" uuid="53e084ef-0ab5-4fe0-bdd4-7bbe5c9deeab"/>
+				<reportElement x="335" y="2" width="100" height="20" uuid="53e084ef-0ab5-4fe0-bdd4-7bbe5c9deeab"/>
 				<text><![CDATA[Preguntas]]></text>
 			</staticText>
 		</band>
@@ -56,7 +56,7 @@ GROUP BY tblEncuesta.encuestaId ]]>
 				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="327" y="0" width="100" height="20" uuid="27b23aa0-1759-4dd6-94b1-839f16e6f4de"/>
+				<reportElement x="335" y="0" width="100" height="20" uuid="27b23aa0-1759-4dd6-94b1-839f16e6f4de"/>
 				<textFieldExpression><![CDATA[$F{Preguntas}]]></textFieldExpression>
 			</textField>
 		</band>

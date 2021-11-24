@@ -31,18 +31,12 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="adminIndex.html">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="questionCrud.html">Crear preguntas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="answerCrud.html">Crear Respuesta</a>
+                        <a class="nav-link" href="../../adminIndex.jsp">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a href="login.html" 
-                    style="color: white;">Salir</a></button>
+                    <a class="btn btn-secondary my-2 my-sm-0" href="index.jsp" 
+                    style="color: white;">Salir</a>
                 </form>
             </div>
         </nav>

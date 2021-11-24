@@ -1,29 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7aa72a7a-58a0-446a-b184-08f0fbb381d8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT tblPreguntas.preguntaId as ID,tblEncuesta.encuestaId,pregunta as Pregunta,preguntaTipo as Tipo,tblEncuesta.encuestaNombre as Encuesta,tr.respuesta as Respuesta,tu.usuarioNombre as Usuario
+FROM tblEncuesta
+inner join tblPreguntas on tblPreguntas.encuestaId = tblEncuesta.encuestaId
+inner join tblRespuestas tr on tr.preguntaId = tblPreguntas.preguntaId 
+inner join tblRespuestaUsuario tru on tru.respuestaId = tr.respuestaId 
+inner join tblUsuarios tu on tru.usuarioId = tu.usuarioId 
+where tblEncuesta.encuestaId=$P{id}]]>
+	</queryString>
+	<field name="ID" class="java.lang.Integer"/>
+	<field name="encuestaId" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pregunta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Tipo" class="java.lang.String"/>
+	<field name="Encuesta" class="java.lang.String"/>
+	<field name="Respuesta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Usuario" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="14" width="555" height="52" uuid="a7868100-c98f-4805-8565-d604ded1582b"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte de encuestas y respuestas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="233" y="0" width="100" height="20" uuid="5bea8556-1b05-4f5a-a695-c755404cc640"/>
+				<textFieldExpression><![CDATA[$F{Encuesta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="2" width="100" height="20" uuid="3a7224ab-298e-4423-bae3-b12d12f4ba31"/>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="133" y="2" width="100" height="20" uuid="c8c31d75-3115-4712-91a1-b3b4d2ea9ad4"/>
+				<text><![CDATA[Pregunta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="2" width="100" height="20" uuid="0ecfba9c-0c0d-4983-8885-18c0f125d98f"/>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="2" width="100" height="20" uuid="a693ae34-d45c-4e26-99d4-2e6b75f93c16"/>
+				<text><![CDATA[Respuesta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="2" width="100" height="20" uuid="1ea3572c-ce44-406a-8e64-ef3f5f4302f6"/>
+				<text><![CDATA[Usuario]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="59" splitType="Stretch">
+			<textField>
+				<reportElement x="16" y="0" width="100" height="20" uuid="06efa596-55e2-431f-9154-ba415d917ec5"/>
+				<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="0" width="100" height="20" uuid="04d5be47-e54d-4cbb-ba16-f0d8603458e2"/>
+				<textFieldExpression><![CDATA[$F{Pregunta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="250" y="0" width="100" height="20" uuid="fe311226-45ee-484c-a533-77ab8deea7d7"/>
+				<textFieldExpression><![CDATA[$F{Tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="100" height="20" uuid="da79f143-a1ba-4a1e-a12a-de5cbbb283ef"/>
+				<textFieldExpression><![CDATA[$F{Respuesta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="cab66da6-abd9-4725-b049-e214392de9fa"/>
+				<textFieldExpression><![CDATA[$F{Usuario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
 </jasperReport>

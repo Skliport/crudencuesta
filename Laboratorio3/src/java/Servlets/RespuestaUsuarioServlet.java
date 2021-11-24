@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "RespuestaUsuarioServlet", urlPatterns = {"/RespuestaUsuarioServlet"})
 public class RespuestaUsuarioServlet extends HttpServlet {
@@ -37,7 +38,9 @@ public class RespuestaUsuarioServlet extends HttpServlet {
         for (int i = 0; i < preguntas.size(); i++) {
             RespuestaUsuario respuestaUsuario = new RespuestaUsuario();
             respuestaUsuario.respuestaId = Integer.parseInt(request.getParameter("resp-"+preguntas.get(i).preguntaId));
-            respuestaUsuario.usuarioId = Integer.parseInt("1");
+            HttpSession session = request.getSession();
+            int idUser = Integer.parseInt(session.getAttribute("usuarioId").toString());
+            respuestaUsuario.usuarioId = idUser;
             respuestaUsuario.respuesta = request.getParameter("resp-"+preguntas.get(i).preguntaId);
             RespuestaUsuario.Insert(respuestaUsuario);
         }

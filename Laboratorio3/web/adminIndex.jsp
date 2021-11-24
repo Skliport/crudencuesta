@@ -29,18 +29,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="adminIndex.html">Inicio <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="questionCrud.html">Crear preguntas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="quizzViewUser.html">Encuestas Respondidas</a>
+          <a class="nav-link" href="adminIndex.jsp">Inicio <span class="sr-only">(current)</span></a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a href="login.html"
-          style="color: white;">Salir</a></button>
+        <a class="btn btn-secondary my-2 my-sm-0" href="index.jsp" 
+                    style="color: white;">Salir</a>
       </form>
     </div>
   </nav>
@@ -73,6 +67,7 @@
         <div class="text-center"></div>
         <form action="${pageContext.request.contextPath}/EncuestaServlet" method="post">
             <div class="card-body">
+                <a href="/Laboratorio3/View/Reportes/ReporteEncuestas.jsp" class="btn btn-outline-primary" style="text-decoration:none;">Reporte de encuestas</a>
                 <table class="table table-hover">
                     <thead>
                       <tr>
@@ -90,7 +85,10 @@
                                     out.println("<td style=\"vertical-align: middle;\">");
                                     out.println("<div role=\"group\" aria-label=\"\">");
                                     out.println("<a href=\"/Laboratorio3/View/Admin/questionCrud.jsp?id="+encuestas.get(i).id+"\" class=\"btn btn-outline-primary\" style=\"text-decoration:none;\">Editar</a>");
-                                    out.println("<a href=\"quizzViewSpecific.html\" style=\"text-decoration:none;\"><button type=\"submit\" name=\"btnAction\" value=\"2-"+encuestas.get(i).id+"\" class=\"btn btn-outline-danger\">Eliminar</button></a>");
+                                    out.println("<a href=\"\" style=\"text-decoration:none;\"><button type=\"submit\" name=\"btnAction\" value=\"2-"+encuestas.get(i).id+"\" class=\"btn btn-outline-danger\">Eliminar</button></a>");
+                                    out.println("");
+                                    out.println("<a href=\"/Laboratorio3/View/Reportes/ReporteEncuestaPreguntas.jsp?id="+encuestas.get(i).id+"\" class=\"btn btn-outline-primary\" style=\"text-decoration:none;\">Reporte 2</a>");
+                                    out.println("<a href=\"/Laboratorio3/View/Reportes/ReporteRespuestas.jsp?id="+encuestas.get(i).id+"\" class=\"btn btn-outline-primary\" style=\"text-decoration:none;\">Reporte3</a>");
                                     out.println("</div>");
                                     out.println("</td>");
                                     out.println("</tr>");
