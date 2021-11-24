@@ -49,7 +49,7 @@ public class Respuesta {
         
         oCon = new Conexion();
         int resp = oCon.agregar("Insert into tblRespuestas(respuestaId, preguntaId, respuesta)"
-            + "values('default','"+respuesta.preguntaId+"','"+respuesta.respuesta+"')");
+            + "values(default,'"+respuesta.preguntaId+"','"+respuesta.respuesta+"')");
         return resp;
     }
     
