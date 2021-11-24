@@ -61,6 +61,22 @@ public class Pregunta {
         return pregunta;
     }
     
+    public static Pregunta GetUltimaPregunta() throws ClassNotFoundException, 
+        InstantiationException, IllegalAccessException, SQLException{
+        
+        oCon = new Conexion();
+        ResultSet rs = oCon.consultar("*", "tblPreguntas ORDER BY preguntaId DESC LIMIT 1;");
+        Pregunta pregunta = new Pregunta();
+        
+        while(rs.next()){      
+            pregunta.preguntaId = rs.getInt(1);
+            pregunta.encuestaId = rs.getInt(2);
+            pregunta.preguntaTipo = rs.getString(3);
+            pregunta.pregunta = rs.getString(4);
+        }
+        return pregunta;
+    }
+    
     public static int Insert(Pregunta pregunta) throws ClassNotFoundException, 
         InstantiationException, IllegalAccessException, SQLException{
         

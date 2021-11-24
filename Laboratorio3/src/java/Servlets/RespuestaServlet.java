@@ -1,8 +1,10 @@
 package Servlets;
 
+import Model.Pregunta;
 import Model.Respuesta;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -40,18 +42,32 @@ public class RespuestaServlet extends HttpServlet {
             
             // Insert
             case 1:
-                Respuesta respuesta = new Respuesta();
-                respuesta.preguntaId = Integer.parseInt(request.getParameter("txtPreguntaId"));
-                respuesta.respuesta = request.getParameter("txtRespuesta");
-                Respuesta.Insert(respuesta);
-                
-                response.sendRedirect("/Laboratorio3/...");
+                   
+                // Si ya existen 3 respuestas registradas entonces no se registrarán más
+                ArrayList<Respuesta> lRespuestas = Respuesta.GetById(id);
+                if (lRespuestas.size() < 4) { 
+                    
+                    // Obteniendo pregunta para determinar si pueden insertarse respuestas o no
+                    Pregunta pregunta = Pregunta.GetPreguntaById(id);
+                    // Si es tipo de pregunta 2 (Opcion multiple) entonces si se pueden registrar respuestas
+                    if (Integer.parseInt(pregunta.preguntaTipo) == 2) {
+                        Respuesta respuesta = new Respuesta();
+                        respuesta.preguntaId = id;
+                        respuesta.respuesta = request.getParameter("txtRespuesta");
+                        Respuesta.Insert(respuesta);
+                    }
+                }
+
+                response.sendRedirect("/Laboratorio3/View/Admin/answerCrud.jsp?id="+id);
                 break;
             
             // Delete
             case 2:
+                Respuesta respuestaTemp = Respuesta.GetRespuestaById(id);
+                int preguntaId = respuestaTemp.preguntaId;
+                
                 Respuesta.Remove(id);
-                response.sendRedirect("/Laboratorio3/...");
+                response.sendRedirect("/Laboratorio3/View/Admin/answerCrud.jsp?id="+preguntaId);
                 break;
                 
             // Update - Texto de respuesta

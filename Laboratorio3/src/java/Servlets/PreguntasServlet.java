@@ -1,6 +1,7 @@
 package Servlets;
 
 import Model.Pregunta;
+import Model.Respuesta;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -44,6 +45,21 @@ public class PreguntasServlet extends HttpServlet {
                 nueva_pregunta.preguntaTipo = request.getParameter("txtPreguntaTipo");
                 nueva_pregunta.pregunta = request.getParameter("txtPregunta");
                 Pregunta.Insert(nueva_pregunta);
+                
+                // Si es una pregunta Verdadero/Falso, insertar respuestas
+                if (Integer.parseInt(nueva_pregunta.preguntaTipo) == 1) {
+                    
+                    // Obteniendo última pregunta insertada
+                    Pregunta ultima_pregunta = Pregunta.GetUltimaPregunta();
+                    
+                    Respuesta respuesta = new Respuesta();
+                    respuesta.preguntaId = ultima_pregunta.preguntaId;
+                    respuesta.respuesta = "Verdadero";
+                    Respuesta.Insert(respuesta);
+                    
+                    respuesta.respuesta = "Falso";
+                    Respuesta.Insert(respuesta);
+                }
                 
                 response.sendRedirect("/Laboratorio3/View/Admin/questionCrud.jsp?id="+id);
                 break;
