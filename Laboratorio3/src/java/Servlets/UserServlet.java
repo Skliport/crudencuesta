@@ -37,8 +37,7 @@ public class UserServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        String items = request.getParameter("btnAction");
-        String action = items.split("-")[0];
+        String action = request.getParameter("btnAction");
         switch (action) {
             case "1":
                 clsUsuario item = new clsUsuario();
@@ -48,24 +47,25 @@ public class UserServlet extends HttpServlet {
                 item.usuarioApellido = request.getParameter("txtUsuarioApellido");
                 int resp = clsUsuario.Insert(item);
                 if (resp == 1) {
-                    System.out.println("Item insertado");
+                    response.sendRedirect("index.jsp");
                 } else {
                     System.out.println("error!!!");
                 }
                 break;
             case "2":
                 clsUsuario respo = clsUsuario.LogIn(request.getParameter("txtUsuarioCorreo"), request.getParameter("txtUsuarioClave"));
-                if(respo.usuarioId==-5){
+                if (respo.usuarioId == -5) {
                     //no se encontro ningun usuario
+                    System.out.println("error al iniciar sesion");
                     break;
-                }else{
+                } else {
                     //realizar la logica de inicio de sesion
                     HttpSession session = request.getSession();
                     session.setAttribute("usuarioNombre", respo.usuarioNombre);
                     session.setAttribute("usuarioApellido", respo.usuarioApellido);
                     session.setAttribute("usuarioCorreo", respo.usuarioCorreo);
                     session.setAttribute("usuarioId", respo.usuarioId);
-response.sendRedirect("index.jsp");
+                    response.sendRedirect("index.jsp"); 
                 }
                 break;
         }
