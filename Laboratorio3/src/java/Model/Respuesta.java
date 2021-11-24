@@ -27,11 +27,11 @@ public class Respuesta {
         return lRespuesta;
     }
     
-    public static ArrayList<Respuesta> GetById(int respuestaId) throws ClassNotFoundException, 
+    public static ArrayList<Respuesta> GetById(int preguntaId) throws ClassNotFoundException, 
         InstantiationException, IllegalAccessException, SQLException{
         
         oCon = new Conexion();
-        ResultSet rs = oCon.consultar("*", "tblRespuestas", "preguntaId="+respuestaId);
+        ResultSet rs = oCon.consultar("*", "tblRespuestas", "preguntaId="+preguntaId);
         ArrayList<Respuesta> respuestas = new ArrayList<>();
         
         while(rs.next()){
@@ -44,12 +44,27 @@ public class Respuesta {
         return respuestas;
     }
     
+    public static Respuesta GetRespuestaById(int respuestaId) throws ClassNotFoundException, 
+        InstantiationException, IllegalAccessException, SQLException{
+        
+        oCon = new Conexion();
+        ResultSet rs = oCon.consultar("*", "tblRespuestas", "respuestaId="+respuestaId);
+        Respuesta respuesta = new Respuesta();
+        
+        while(rs.next()){
+            respuesta.respuestaId = rs.getInt(1);
+            respuesta.preguntaId = rs.getInt(2);
+            respuesta.respuesta = rs.getString(3);
+        }
+        return respuesta;
+    }
+    
     public static int Insert(Respuesta respuesta) throws ClassNotFoundException, 
         InstantiationException, IllegalAccessException, SQLException{
         
         oCon = new Conexion();
         int resp = oCon.agregar("Insert into tblRespuestas(respuestaId, preguntaId, respuesta)"
-            + "values('default','"+respuesta.preguntaId+"','"+respuesta.respuesta+"')");
+            + "values(default,'"+respuesta.preguntaId+"','"+respuesta.respuesta+"')");
         return resp;
     }
     

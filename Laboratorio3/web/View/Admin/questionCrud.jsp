@@ -4,11 +4,13 @@
     Author     : bryan
 --%>
 
+<%@page import="Model.Pregunta"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="Model.clsEncuesta"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% int id = Integer.parseInt(request.getParameter("id")); 
     clsEncuesta encuesta = clsEncuesta.GetById(id);
-
+    ArrayList<Pregunta> lPreguntas = Pregunta.GetAll();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,8 +41,8 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a href="login.html"
-                                                                                    style="color: white;">Salir</a></button>
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a href="login.html" 
+                    style="color: white;">Salir</a></button>
                 </form>
             </div>
         </nav>
@@ -60,7 +62,8 @@
                                 </div>
 
                             </div>   
-                                    <button type="submit" name="btnAction" value=<% out.println("\"4-"+id+"\""); %> class="btn btn-outline-primary" style="" >Actualizar</button>
+                                <button type="submit" name="btnAction" value=<% out.println("\"4-"+id+"\""); %> 
+                                class="btn btn-outline-primary" style="" >Actualizar</button>
                         </div>
                     </form> 
                 </div>
@@ -68,19 +71,18 @@
 
         </div>
 
-
-
         <div class="container" style="padding-top:25px;">
             <div class="card border-dark shadow">
                 <div class="card-header text-center">
                     <b>Crear Preguntas</b>
                     <div class="text-center"></div>
-                    <form action="${pageContext.request.contextPath}/PreguntaServlet" method="post">
+                    <form action="${pageContext.request.contextPath}/PreguntasServlet" method="post">
                         <div class="card-body">
                             <div class="row" style="padding-left: 10px; padding-right: 10px;">
                                 <div class="col-xl-12 col-md-4 col-sm-12 mb-2">
                                     <label>Pregunta:*</label>
-                                    <input class=" card border-dark shadow col-xl-12 col-md-4 col-sm-12 mb-2" type="text" name="txtPregunta" minlength="4" size="10" required>
+                                    <input class=" card border-dark shadow col-xl-12 col-md-4 col-sm-12 mb-2" type="text" 
+                                    name="txtPregunta" minlength="4" size="10" required>
                                 </div>
                             </div>
                             <div class="row" style="padding-left: 10px; padding-right: 10px;">
@@ -92,7 +94,8 @@
                                     </select>
                                 </div>
                             </div>
-                            <button type="submit" name="btnActionPregunta" value="1-0" class="btn btn-outline-primary" style="" >Agregar</button>
+                            <button type="submit" name="btnActionPregunta" value=<% out.println("\"1-"+id+"\""); %>  class="btn btn-outline-primary" 
+                            style="" >Agregar</button>
                         </div>
                     </form> 
                 </div>
@@ -104,40 +107,35 @@
                 <div class="card-header text-center">
                     <b>Encuestas Registradas</b>
                     <div class="text-center"></div>
-                    <form action="quizzUser.html" method="post">
+                     <form action="${pageContext.request.contextPath}/PreguntasServlet" method="post">
                         <div class="card-body">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th scope="col">ID Pregunta</th>
                                         <th scope="col">Pregunta</th>
-                                        <th scope="col">Respuesta Real</th>
+                                        <th scope="col">Tipo de Pregunta</th>
                                         <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Existe el chupacabras?</td>
-                                        <td>a</td>
-                                        <td style="vertical-align: middle;">
-                                            <div role="group" aria-label="">
-                                                <a href="questionCrud.html" style="text-decoration:none;"><button type="submit" class="btn btn-outline-primary">Editar</button></a>
-                                                <a href="quizzViewSpecific.html" style="text-decoration:none;"><button type="submit" class="btn btn-outline-danger">Eliminar</button></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Quien eres?</td>
-                                        <td>a</td>
-                                        <td style="vertical-align: middle;">
-                                            <div role="group" aria-label="">
-                                                <a href="questionCrud.html" style="text-decoration:none;"><button type="submit" class="btn btn-outline-primary">Editar</button></a>
-                                                <a href="quizzViewSpecific.html" style="text-decoration:none;"><button type="submit" class="btn btn-outline-danger">Eliminar</button></a>
-                                            </div>
-                                        </td>
-                                    </tr> 
+                                    <%
+                                    for (int i = 0; i < lPreguntas.size(); i++) {
+                                        if (lPreguntas.get(i).encuestaId == id) {
+                                            out.println("<tr>");
+                                            out.println("<th scope=\"row\">"+lPreguntas.get(i).preguntaId+"</th>");
+                                            out.println("<td>"+lPreguntas.get(i).pregunta+"</td>");
+                                            if (Integer.parseInt(lPreguntas.get(i).preguntaTipo) == 1) { out.println("<td>Verdadero/Falso</td>");}
+                                            else { out.println("<td>Opcion Multiple</td>");}
+
+                                            out.println("<td>");
+                                                out.println("<a href=\"/Laboratorio3/View/Admin/answerCrud.jsp?id="+lPreguntas.get(i).preguntaId+"\" class=\"btn btn-outline-primary\" style=\"text-decoration:none;\">Editar</a>");
+                                                out.println("<a href=\"quizzViewSpecific.html\" style=\"text-decoration:none;\"><button type=\"submit\" name=\"btnActionPregunta\" value=\"2-"+lPreguntas.get(i).preguntaId+"\" class=\"btn btn-outline-danger\">Eliminar</button></a>");
+                                             out.println("</td>");
+                                             out.println("</tr>");
+                                        }  
+                                    }
+                                    %>
                                 </tbody>
                             </table>
                         </div>

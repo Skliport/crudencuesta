@@ -56,7 +56,7 @@ public class EncuestaServlet extends HttpServlet {
                     clsEncuesta.update(id, EditNombre);
                     break;
             }
-            response.sendRedirect("/View/Admin/questionCrud.jsp");
+            response.sendRedirect("adminIndex.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
