@@ -53,9 +53,10 @@ public class EncuestaServlet extends HttpServlet {
                     break;
                 case "4":
                     String EditNombre = request.getParameter("txtNombreEdit");
+                    clsEncuesta.update(id, EditNombre);
                     break;
             }
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("/View/Admin/questionCrud.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

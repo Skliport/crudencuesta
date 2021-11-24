@@ -27,19 +27,21 @@ public class Respuesta {
         return lRespuesta;
     }
     
-    public static Respuesta GetById(int respuestaId) throws ClassNotFoundException, 
+    public static ArrayList<Respuesta> GetById(int respuestaId) throws ClassNotFoundException, 
         InstantiationException, IllegalAccessException, SQLException{
         
         oCon = new Conexion();
-        ResultSet rs = oCon.consultar("*", "tblRespuestas", "respuestaId="+respuestaId);
-        Respuesta respuesta = new Respuesta();
+        ResultSet rs = oCon.consultar("*", "tblRespuestas", "preguntaId="+respuestaId);
+        ArrayList<Respuesta> respuestas = new ArrayList<>();
         
         while(rs.next()){
+            Respuesta respuesta = new Respuesta();
             respuesta.respuestaId = rs.getInt(1);
             respuesta.preguntaId = rs.getInt(2);
             respuesta.respuesta = rs.getString(3);
+            respuestas.add(respuesta);
         }
-        return respuesta;
+        return respuestas;
     }
     
     public static int Insert(Respuesta respuesta) throws ClassNotFoundException, 

@@ -28,20 +28,22 @@ public class Pregunta {
         return lpreguntas;
     }
     
-    public static Pregunta GetById(int preguntaId) throws ClassNotFoundException, 
+    public static ArrayList<Pregunta> GetById(int preguntaId) throws ClassNotFoundException, 
         InstantiationException, IllegalAccessException, SQLException{
         
         oCon = new Conexion();
-        ResultSet rs = oCon.consultar("*", "tblPreguntas", "preguntaId="+preguntaId);
-        Pregunta pregunta = new Pregunta();
+        ResultSet rs = oCon.consultar("*", "tblPreguntas", "encuestaId="+preguntaId);
+        ArrayList<Pregunta> preguntas = new ArrayList<>();
         
         while(rs.next()){
+            Pregunta pregunta = new Pregunta();
             pregunta.preguntaId = rs.getInt(1);
             pregunta.encuestaId = rs.getInt(2);
             pregunta.preguntaTipo = rs.getString(3);
             pregunta.pregunta = rs.getString(4);
+            preguntas.add(pregunta);
         }
-        return pregunta;
+        return preguntas;
     }
     
     public static int Insert(Pregunta pregunta) throws ClassNotFoundException, 

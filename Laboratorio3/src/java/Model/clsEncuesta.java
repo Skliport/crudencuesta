@@ -42,6 +42,16 @@ public class clsEncuesta {
         }
         return encuestas;
     }
+    public static clsEncuesta GetById(int id) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException{
+        oCon = new Conexion();
+        ResultSet rs = oCon.consultar("*", "tblEncuesta where encuestaId="+id);
+        clsEncuesta item = new clsEncuesta();
+        while(rs.next()){
+            item.id = rs.getInt(1);
+            item.nombre=rs.getString(2);
+        }
+        return item;
+    }
     public static int update(int id, String nombre) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException{
         oCon = new Conexion();
         int resp = oCon.DoQuery2("update tblEncuesta set encuestaNombre='"+nombre+"' where encuestaId="+id);

@@ -48,8 +48,8 @@ public class RespuestaUsuario {
         InstantiationException, IllegalAccessException, SQLException{
         
         oCon = new Conexion();
-        int resp = oCon.agregar("Insert into tblRespuestaUsuario(usuarioRespuestaId, respuestaId, usuarioId, respuesta)"
-            + " values('default','"+respuestaUsuario.respuestaId+"','"+respuestaUsuario.usuarioId+"','"
+        int resp = oCon.agregar("Insert into tblRespuestaUsuario(respuestaId, usuarioId, respuesta)"
+            + " values("+respuestaUsuario.respuestaId+","+respuestaUsuario.usuarioId+",'"
             +respuestaUsuario.respuesta+"')");
         return resp;
     }
