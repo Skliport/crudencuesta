@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,10 +31,6 @@
           <a class="nav-link" href="quizzViewUser.jsp">Encuestas Respondidas</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a href="View/Login.jsp"
-          style="color: white;">Entrar</a></button>
-      </form>
     </div>
   </nav>
   <div class="container" style="padding-top:25px;">

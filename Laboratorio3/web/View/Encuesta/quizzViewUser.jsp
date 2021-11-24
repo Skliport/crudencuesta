@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,16 +30,12 @@
               <a class="nav-link" href="quizzViewUser.jsp">Encuestas Respondidas</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a href="../Login.jsp"
-              style="color: white;">Entrar</a></button>
-          </form>
         </div>
       </nav>
       <div class="container" style="padding-top:25px;">
         <div class="card border-dark shadow">
             <div class="card-header">
-                <b>Encuestas respondidassimon</b>
+                <b>Encuestas que han sido finalizadas</b>
               </div>
           <div class="card-body">
             <table class="table table-hover">
@@ -52,15 +49,9 @@
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td>Encuesta sobre que tan gei es cofi</td>
+                    <td>Encuesta de prueba</td>
                     <td><button type="button" class="btn btn-outline-primary"><a href="quizzViewSpecific.jsp" style="text-decoration:none;">Ver Encuesta</a></button></td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Otra pq si</td>
-                    <td><button type="button" class="btn btn-outline-primary"><a href="quizzViewSpecific.jsp" style="text-decoration:none;">Ver Encuesta</a></button></td>
-                  </tr>
-                 
                 </tbody>
               </table>
           </div>
