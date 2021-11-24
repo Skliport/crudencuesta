@@ -35,7 +35,9 @@ public class Conexion {
         Statement cons = this.conexion.createStatement();
         return cons.executeQuery(sql);
     }
-
+    public Connection Get(){
+        return this.conexion;
+    }
     public ResultSet DoQuery(String query) throws SQLException {
         Statement cons = this.conexion.createStatement();
         return cons.executeQuery(query);
