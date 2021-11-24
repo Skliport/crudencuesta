@@ -9,6 +9,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% ArrayList<clsEncuesta> encuestas = clsEncuesta.GetAll();%>
+<% if (request.getParameter("btnCerrar") != null) {session.setAttribute("usuarioId", null); } %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,8 +38,17 @@
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a href="View/Login.jsp"
-                                                                                    style="color: white;">Entrar</a></button>
+                    <%  //Verificando inicio de sesión
+                        if(null == session.getAttribute("usuarioId")){
+                    %>
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+                            <a href="View/Login.jsp" style="color: white;">Iniciar sesión</a>
+                        </button>
+                    <% } else{ %>
+                        <form action="" method="post">
+                            <button name="btnCerrar" type="submit" class="btn btn-danger">Cerrar Sesión</button>
+                        </form>
+                    <% } %>
                 </form>
             </div>
         </nav>
@@ -49,7 +60,7 @@
                     out.println("<b>"+encuestas.get(i).nombre+"</b>");
                     out.println("<div class=\"text-center\"></div>");
                     out.println("<form action=\"View/Encuesta/quizzUser.jsp?id="+encuestas.get(i).id+"\" method=\"post\">");
-                    out.println("<button type=\"submit\" class=\"btn btn-outline-primary\" style=\"\" >Responder</button>");
+                    out.println("<button type=\"submit\" class=\"btn btn-outline-primary\" style=\"\" >Responder encuesta</button>");
                     out.println("</form>");
                     out.println("</div>");
                     out.println("</div>");

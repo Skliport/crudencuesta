@@ -8,12 +8,12 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Pregunta"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%
     int id = Integer.parseInt(request.getParameter("id"));
     ArrayList<Pregunta> preguntas = Pregunta.GetById(id);
-
-
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,10 +40,6 @@
                         <a class="nav-link" href="quizzViewUser.jsp">Encuestas Respondidas</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit"><a href="../Login.jsp"
-                                                                                    style="color: white;">Entrar</a></button>
-                </form>
             </div>
         </nav>
         <div class="container" style="padding-top:25px;">
@@ -76,9 +72,15 @@
                                     out.println("<br>");
                                 }
                             %>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-outline-primary">Enviar respuestas</button>
+                        </div> <br>
+                        <%
+                        //Verificando inicio de sesión
+                        if(null == session.getAttribute("usuarioId")){
+                            out.println("<a href=\"/Laboratorio3/View/Login.jsp\" class=\"btn btn-outline-danger\" style=\"\" >Inicie sesión para responder esta encuesta</a>");       
+                        }else{
+                            out.println("<button type=\"submit\" class=\"btn btn-outline-primary\">Enviar respuestas</button>");         
+                        }
+                         %>
                     </div>
                 </div>
             </form>
