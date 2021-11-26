@@ -82,6 +82,30 @@ public class Pregunta {
         return pregunta;
     }
     
+    public static ArrayList<String> GetData3(int encuestaId) throws ClassNotFoundException, 
+        InstantiationException, IllegalAccessException, SQLException{
+        
+        oCon = new Conexion();     
+        String query = "select tp.encuestaId, tp.preguntaId, tr.respuestaId, tr.respuesta, count(tru.respuestaId) as "
+        + "Cantidad from tblRespuestaUsuario tru " +
+        "inner join tblRespuestas tr ON tr.respuestaId =tru.respuestaId " +
+        "inner join tblPreguntas tp on tp.preguntaId =tr.preguntaId " +
+        "where tp.encuestaId = " + encuestaId +"" +
+        "group by tr.respuestaId ;";
+                
+        ResultSet rs = oCon.DoQuery(query);
+        ArrayList<String> data = new ArrayList<>();
+        
+        while(rs.next()){
+            String info;
+            String i = rs.getString("respuesa");
+            int b = rs.getInt("Cantidad");
+            info = i+ "-" +b;
+            data.add(info);
+        }
+        return data;
+    }
+    
     public static Pregunta GetUltimaPregunta() throws ClassNotFoundException, 
         InstantiationException, IllegalAccessException, SQLException{
         
