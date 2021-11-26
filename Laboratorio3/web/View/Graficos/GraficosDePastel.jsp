@@ -4,6 +4,7 @@
     Author     : Osama Bin Laden <binladen at gmail.com>
 --%>
 
+<%@page import="java.util.Random"%>
 <%@page import="Model.Pregunta"%>
 <%@page import="Model.clsEncuesta"%>
 <%@page import="java.util.ArrayList"%>
@@ -65,9 +66,13 @@
                         for (int j = 0; j < data.size(); j++) {
                             String[] info = data.get(j).split("-");
                             if (Integer.parseInt(info[2]) == lPreguntas.get(i).preguntaId) {
+                                Random rand = new Random();
+                                float r = rand.nextFloat();
+                                float g = rand.nextFloat();
+                                float b = rand.nextFloat();
                                 labels += "'" + info[0] + "',";
                                 datos += info[1] + ",";
-                                Colores += "'rgba(255, 99, 132, 0.2)',";
+                                Colores += "'rgba("+r*255+","+g*255+","+b*255+", 0.2)',";
                             }
                         }
                     %>
