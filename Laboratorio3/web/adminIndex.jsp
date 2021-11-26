@@ -89,6 +89,8 @@
                                     out.println("");
                                     out.println("<a href=\"/Laboratorio3/View/Reportes/ReporteEncuestaPreguntas.jsp?id="+encuestas.get(i).id+"\" class=\"btn btn-outline-primary\" style=\"text-decoration:none;\">Reporte 2</a>");
                                     out.println("<a href=\"/Laboratorio3/View/Reportes/ReporteRespuestas.jsp?id="+encuestas.get(i).id+"\" class=\"btn btn-outline-primary\" style=\"text-decoration:none;\">Reporte3</a>");
+                                    out.println("<a href=\"/Laboratorio3/View/Graficos/GraficosDeBarra.jsp?id="+encuestas.get(i).id+"\" class=\"btn btn-outline-success\" style=\"text-decoration:none;\">Gráfico de Barra</a>");
+                                    out.println("<a href=\"/Laboratorio3/View/Graficos/GraficosDePastel.jsp?id="+encuestas.get(i).id+"\" class=\"btn btn-outline-success\" style=\"text-decoration:none;\">Gráfico de Pastel</a>");
                                     out.println("</div>");
                                     out.println("</td>");
                                     out.println("</tr>");

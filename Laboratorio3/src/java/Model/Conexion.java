@@ -20,7 +20,7 @@ public class Conexion {
     public Connection conexion = null;
     static String url = "jdbc:mysql://localhost:3306/encuesta2021";
     static String Usuario = "root";
-    static String contrasena = "root";
+    static String contrasena = "2019mu601";
 
     public Conexion() throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
         try {
